@@ -1,5 +1,7 @@
 # HeartDiseaseStudy
 
+DataSet: http://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data
+
 This program selects features from the Cleveland heart disease study on
 the UC Irvine Machine Learning Repository.  It does this by maximizing
 the accuracy of a K-Nearest Neighbors classifier.  The initial features
