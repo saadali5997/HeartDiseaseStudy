@@ -32,5 +32,6 @@ to dummy ones) is:
 1 (age) + 1 (sex) + 4 (cp) + 1 (restbp) + 1 (chol) + 1 (fbs) + 3 (restecg) +
 1 (thalach) + 1 (exang) + 1 (oldpeak) + 3 (slope) + 1 (ca) + 3 (thal) = 22
 
-#What are we going to do?
+# What are we going to do?
+
 We are going to test different ML models one by one on different parameteres and check their accuracies. As the classes to classify are too much compared to the amount of samples we have, we might not good very good accuracies.
