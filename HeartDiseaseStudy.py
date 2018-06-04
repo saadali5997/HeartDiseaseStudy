@@ -1,3 +1,4 @@
+#Needs Python 3 or above to run
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -6,7 +7,17 @@ from sklearn.metrics import accuracy_score
 from sklearn.cross_validation import cross_val_score
 import itertools
 from pprint import pprint
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.ensemble import RandomForestClassifier
 
+
+
+#Cleaning Data
 columns = ["age", "sex", "cp", "restbp", "chol", "fbs", "restecg",
            "thalach", "exang", "oldpeak", "slope", "ca", "thal", "num"]
 df = pd.read_csv("http://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data", sep=',', header=None,
@@ -38,15 +49,12 @@ df = df.rename(columns={"thal_3.0": "thal_3","thal_6.0": "thal_6", "thal_7.0": "
 result=df['num']
 df=df.drop("num",axis=1)
 
-from sklearn.model_selection import train_test_split
+#Splitting Data
 X_train, X_test, Y_train, Y_test = train_test_split(df, result, 
                                                     train_size=0.75, 
                                                     random_state=150)
 
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.preprocessing import MinMaxScaler
-
-
+#KNN
 training_accuracy = []
 test_accuracy = []
 
@@ -63,22 +71,17 @@ for n_neighbors in neighbors_settings:
 print(training_accuracy)
 print(test_accuracy)
 
-from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import accuracy_score
 
+#GuassianNaiveBayes
 clf = GaussianNB(priors=None)
 clf.fit(X_train, Y_train)
-
 pred = clf.predict(X_train)
 print (accuracy_score(pred, Y_train))
-
 pred = clf.predict(X_test)
 print (accuracy_score(pred, Y_test))
-#print ("Testing Accuracy of the prediction:"+accuracy_score(pred, Y_test))
-
-from sklearn.tree import DecisionTreeClassifier
 
 
+#DecisionTrees
 for mdp in range(1,15):
     for mln in range(2,23):
         tree = DecisionTreeClassifier(max_depth=mdp,random_state=5,max_leaf_nodes=mln)
@@ -88,11 +91,9 @@ for mdp in range(1,15):
         print("Accuracy on training set: {:.3f}".format(tree.score(X_train, Y_train)))
         print("Accuracy on test set: {:.3f}".format(tree.score(X_test, Y_test)))
 
-from sklearn.ensemble import RandomForestClassifier
 
+#RandomForest  
 lst=[]
-
-
 for nest in range(1,15):
     for mdp in range(1,7):
         for mft in range(1,23):
@@ -105,9 +106,7 @@ for nest in range(1,15):
             max_accuracy['t_accuracy']=forest.score(X_train, Y_train)
             max_accuracy['test_accuracy']=forest.score(X_test, Y_test)
             lst.append(max_accuracy)
-            del max_accuracy
-        
+            del max_accuracy       
 newlist = sorted(lst, key=lambda k: k['test_accuracy']) 
-
 for dictionary in newlist:
     print(dictionary)
