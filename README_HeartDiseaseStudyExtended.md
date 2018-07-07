@@ -247,9 +247,9 @@ Publication Request:
 
 Lets do a more detailed analysis of our Heart Disease Study. We have another heart disease dataset with 76 featuers. 
 Usually, more features mean more information. Probably, we will be able to achieve better classification accuracy. 
-### Do all features give better prediction? Or, can we ignore some of the features to achieve better accuracy? 
-### How many features give us the best classification accuracy? 
-### Which model works best with the optimized set of features? 
-### Which hypermeters are best for each model we choose? 
+##### Do all features give better prediction? Or, can we ignore some of the features to achieve better accuracy? 
+##### How many features give us the best classification accuracy? 
+##### Which model works best with the optimized set of features? 
+##### Which hypermeters are best for each model we choose? 
 These are some of the questions that intrigue us and we are going to find answers to them. 
 You have to explore these questions and come up with reasonable answers.
